@@ -54,8 +54,8 @@ public class GestorPeticion extends Thread {
 				//Separa lo que se lee
 				String aux[] = str.split(",");
 				if (aux[0].startsWith("us")) {//Recibe Usuaro
-					indexUser = buscaUsuario(aux[1]);
-
+                    indexUser = buscaUsuario(aux[1]);
+                    
 					if (indexUser == -1) {//Si no se encuentra el usuario
 						System.out.println("Usuario no Encontrado");
 						salida.println(encriptar("un,"+"null"));
@@ -69,19 +69,14 @@ public class GestorPeticion extends Thread {
 
 						//Gerenando texto Aleatorio
 						textoAleatorio = generaTexto();
-						System.out.println("Texto Generado:\n"+textoAleatorio+"\n");
 						salida.println(encriptar("ms,"+textoAleatorio));
-
 						//Texto aletorio mezclado
 						textoMezclado = mes.mezcla(textoAleatorio, user.getPass());
-						System.out.println("Texto Mezclado:\n"+textoMezclado+"\n");
 					}
 				}else if (aux[0].startsWith("md")) {//Recibe md
 					MD5 gen = new MD5();
 					String md5cli = aux[1];
 					String md5ser = gen.getMD5(textoMezclado);
-					System.out.println("MD5Cli:\n"+md5cli+"\n");
-					System.out.println("MD5Ser:\n"+md5ser+"\n");
 					
 					if (md5ser.equals(md5cli)) {
 						System.out.println("Contraseña Correcta");
