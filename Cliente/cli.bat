@@ -1,5 +1,5 @@
 #!/bin/bash
-javac -d class Cliente_FTP.java
+javac -d class FTPCliente.java
 echo "Ejecutando Cliente"
-java -cp class Cliente_FTP localhost 5972
+java -cp class FTPCliente localhost 5972
 pause
