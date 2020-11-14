@@ -8,25 +8,27 @@ import java.io.UnsupportedEncodingException;
  * Clase principal de cliente
  */
 public class Cliente {
-	public static void clearScreen() {  
-		System.out.print("\033[H\033[2J");  
-		System.out.flush();  
-	} 
+	public Cliente(){};
 
-	private Usuario menu(){
+	private Usuario menuIninical(){
 		Scanner scaner = new Scanner(System.in);
 		System.out.println("\tMenu Login\nIngrese una opcion");
 		System.out.println("1)Iniciar Session");
 		System.out.println("2)Salir\n<------------------------->");
 		while (true) {
-			Integer opcion = scaner.nextInt();
+			System.out.print("$ ");
+			int opcion;
+			try {
+				opcion = scaner.nextInt();
+			} catch (Exception e) {
+				opcion = 0;
+			}
 			switch (opcion) {
 				case 1:
-					clearScreen();
-					System.out.print("Ingrese usuario\n->");
+					System.out.print("Ingrese usuario\n$ ");
 					String nombre = scaner.nextLine();
 					nombre = scaner.nextLine();
-					System.out.print("Ingrese Contraseña\n->");
+					System.out.print("Ingrese Contraseña\n$");
 					String password = scaner.nextLine();
 					scaner.close();
 					Usuario user = new Usuario(nombre, password);
@@ -39,6 +41,7 @@ public class Cliente {
 			}
 		}
 	}
+
 	private static String encriptar(String s) throws UnsupportedEncodingException{
         return Base64.getEncoder().encodeToString(s.getBytes("utf-8"));
     }
@@ -65,7 +68,7 @@ public class Cliente {
 
 		System.out.println("Conectando a: "+servidor+"\nPuerto: "+puerto+"\n");
 		try{
-			Usuario user = aux.menu();
+			Usuario user = aux.menuIninical();
 			//Abre el socket
 			Socket socket = new Socket(servidor,puerto);
 
@@ -73,7 +76,6 @@ public class Cliente {
 			BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			PrintWriter salida = new PrintWriter( new OutputStreamWriter(socket.getOutputStream() ),true );
 			
-			clearScreen();
 			//Envia Usuario
 			salida.println(encriptar("us,"+user.getName()));
 			
@@ -82,6 +84,8 @@ public class Cliente {
 			String str[] = mensajeAleatorio.split(",");
 			if (str[0].equals("un")) {
 				System.out.println("Usuario no registrado u.u");
+				//Envia mensaje de Salida
+				salida.println(encriptar("fn"));
 				socket.close();
 				System.exit(1);
 			}

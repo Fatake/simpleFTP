@@ -1,3 +1,6 @@
+/**
+ * Clase de Usuarios
+ */
 public class Usuario {
     private String nombre;
     private String password;
@@ -12,7 +15,7 @@ public class Usuario {
         return this.password;
     }
     public String toString(){
-        String aux = "Nombre: "+this.nombre+" Contraseña: "+this.password;
+        String aux = "Nombre: "+this.nombre+" Password: "+this.password;
         return aux;
     }
 }

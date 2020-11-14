@@ -16,9 +16,9 @@ import java.util.Base64;
  */
 public class GestorPeticion extends Thread {
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-	BufferedReader entrada = null;
-	PrintWriter salida = null;
-	Socket socket;
+	private BufferedReader entrada = null;
+	private PrintWriter salida = null;
+	private Socket socket;
 
 	// Constructor sin nombre
 	public GestorPeticion(Socket socket,ArrayList<Usuario> usuarios){
@@ -37,8 +37,7 @@ public class GestorPeticion extends Thread {
 	 * Instruccion de ejecucion
 	 */
 	public void run(){
-		System.out.print("\033[H\033[2J");  
-		System.out.flush();
+		System.out.print("\nNueva peticion\n");  
 		System.out.println("\n\n<----------------->"); 
 		Usuario user = null;
 		int indexUser = 0;
@@ -109,7 +108,7 @@ public class GestorPeticion extends Thread {
 			System.exit(-1);
 		}
 	}
-	
+
 	/*
 	 * Encriptador
 	 */
@@ -126,7 +125,7 @@ public class GestorPeticion extends Thread {
     }
 
 	/*
-	 * Busca ujsuarios en Base de Datos
+	 * Busca usuarios en Base de Datos
 	 */
 	private int buscaUsuario(String userName){
 		int posicion = -1;
