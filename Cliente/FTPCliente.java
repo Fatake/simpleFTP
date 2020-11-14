@@ -40,20 +40,17 @@ public class FTPCliente {
 			PrintStream salida = new PrintStream (flujosalida);
 
 			mensaje = entrada.readLine();
-			boolean bandera_operacion;
-			bandera_operacion = true;
 
-			while(bandera_operacion){
-				operacion = System.console().readLine("Ingrese\n (1) autenticar usuario \n (2) para registar usuario\n$ ");
+			while(true){
+				operacion = System.console().readLine("Menu Principal\n (1) Iniciar Sesion\n (2) Registro de Usuario\n$ ");
 				if(operacion.equals("1")){
-					System.out.println("autenticar usuario");
-					bandera_operacion = false;
+					System.out.println("Login");
+					break;
 				} else if (operacion.equals("2")) {
-					System.out.println("registrar usuario");
-					bandera_operacion= false;
+					System.out.println("Registrar");
+					break;
 				} else {
 					System.out.println("error");
-					bandera_operacion = true;
 				}
 			}
 
@@ -68,7 +65,7 @@ public class FTPCliente {
 			if(!"Usuario no existente".equals(mensaje)){  // si el usuario si existe ejecutar codigo para transferir archivos
 				boolean finalizar = false;
 				while(finalizar == false)	{// Mientras no finalice
-					comando = System.console().readLine("\nIntroduzca un comando: ls, ll, up, down, fin, (h para ayuda) -> ");
+					comando = System.console().readLine("\nIntroduzca un comando: ls, ll, up, down, fin, (h para ayuda) \n$ ");
 					
 					switch(comando.toLowerCase()){
 						case "ls":						
