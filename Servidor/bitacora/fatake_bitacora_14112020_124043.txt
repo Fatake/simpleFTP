@@ -1,0 +1,2 @@
+fatake autenticado Sat Nov 14 12:40:43 CST 2020
+fatake listar directorio servidor Sat Nov 14 12:40:54 CST 2020

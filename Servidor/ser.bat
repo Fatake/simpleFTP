@@ -1,5 +1,6 @@
 #!/bin/bash
-javac -d class Servidor.java
-echo "Ejecutando Servidor"
-java -cp class Servidor
+RD /S class
+javac -d class FTPServer.java
+echo "Ejecutando Cliente"
+java -cp class FTPServer localhost 5972
 pause
