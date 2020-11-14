@@ -12,15 +12,13 @@ import java.net.Socket;
  */
 public class Manejador{
 	private final String SERVER_PATH = "./ServerFiles";
-	public Manejador(){};
+	public Manejador(){ };
 	
-	public void enviar_mensaje(String mensaje, PrintStream salida) {
+	public void enviarMensaje(String mensaje, PrintStream salida) {
 		salida.println(mensaje);
 		salida.flush();
 	}
-	
-	
-	@SuppressWarnings("resource")
+
 	public void send(Socket socket_cliente, String archivo, PrintStream salida) throws Exception {
 		int archivo_len = 0;
 		FileInputStream fis = null;
@@ -49,7 +47,6 @@ public class Manejador{
 	    System.out.println("Done.");
 	}
 
-	@SuppressWarnings("resource")
 	public void receiveFile(Socket socket_cliente, int filesize, String nombre_archivo) throws Exception {
 	    int bytesRead;
 	    int current = 0;
@@ -68,7 +65,7 @@ public class Manejador{
 	    } while(current < filesize);
 	    bos.write(mybytearray, 0 , current);
 	    bos.flush();
-	    //bos.close();
+	    bos.close();
 	    System.out.println("File " + "prueba.txt" + " downloaded (" + current + " bytes read)");
 	}
 }

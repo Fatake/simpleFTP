@@ -56,7 +56,7 @@ class HiloCliente extends Thread {
 	public void run() {
 		try{			
 			do{
-                flujos.enviar_mensaje("conexion aceptada", salida);
+                flujos.enviarMensaje("conexion aceptada", salida);
                 // Analisa la coneccion
 				mensaje = entrada.readLine();
 				palabra = mensaje.split(" ");
@@ -71,7 +71,7 @@ class HiloCliente extends Thread {
                     if(existe.equals("si")){// EL USUARIO SI EXISTE
                         this.reg.crear_bitacora(this.log);
                         this.reg.escribir_bitacora(this.log, "autenticado");
-                        flujos.enviar_mensaje("Usuario Autenticado. Hola " + this.log, salida);
+                        flujos.enviarMensaje("Usuario Autenticado. Hola " + this.log, salida);
                         while(!finalizar){
                             System.out.println("esperando comando");
                             mensaje = entrada.readLine();
@@ -79,7 +79,7 @@ class HiloCliente extends Thread {
                                 if(mensaje.equals("ls")){
                                     System.out.println("listando directorio");
                                     this.reg.escribir_bitacora(this.log, "listar directorio servidor");
-                                    flujos.enviar_mensaje(listDir(), salida);
+                                    flujos.enviarMensaje(listDir(), salida);
                                     break;
                                 } else if (mensaje.equals("down")){ // Descargar Archivo
                                     nombre_archivo_subir = entrada.readLine(); // espera el nombre del archivo
@@ -104,15 +104,15 @@ class HiloCliente extends Thread {
                             }
                         }
                     } else {
-                    flujos.enviar_mensaje("Usuario no existente", salida);
+                    flujos.enviarMensaje("Usuario no existente", salida);
                     break;
                     }
 				} else { // No existe
                     if(existe.equals("no")){
-                        flujos.enviar_mensaje("registrando usuario " + this.log, salida);
+                        flujos.enviarMensaje("registrando usuario " + this.log, salida);
                         usuario.Registrar(this.log, this.clave);
                     } else {
-                        flujos.enviar_mensaje("Usuario ya existente. Hola " + this.log, salida); // registrando usuario ya existente
+                        flujos.enviarMensaje("Usuario ya existente. Hola " + this.log, salida); // registrando usuario ya existente
                     }
 				}
 				System.out.println("finalizando");
